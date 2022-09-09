@@ -6,6 +6,10 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 
+
+const path = require( "path" );
+const fs = require( 'fs' );
+
 // defining the Express app
 const app = express();
 
@@ -28,6 +32,12 @@ app.use(morgan('combined'));
 
 // defining an endpoint to return all ads
 app.get('/', (req, res) => {
+
+  fs.appendFile('/Users/Liviu/Career/Projects/LanguageLearning-Api/LanguageLearning-api/test.txt', 'Hello World!222\n', function (err) {
+    if (err) return console.log(err);
+    console.log('Hello World > helloworld.txt');
+  });
+
   res.send(ads);
 });
 
