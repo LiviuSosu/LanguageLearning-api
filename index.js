@@ -10,6 +10,8 @@ const morgan = require('morgan');
 const path = require( "path" );
 const fs = require( 'fs' );
 
+const PORT = process.env.PORT || 5000
+
 // defining the Express app
 const app = express();
 
@@ -47,6 +49,6 @@ app.get('/', (req, res) => {
 });
 
 // starting the server
-app.listen(3001, () => {
-  console.log('listening on port 3001');
+app.listen(PORT, () => {
+  console.log('listening on port '+ PORT);
 });
