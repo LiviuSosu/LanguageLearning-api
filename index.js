@@ -32,18 +32,18 @@ app.use(morgan('combined'));
 
 // defining an endpoint to return all ads
 app.get('/', (req, res) => {
-  var fileName = __dirname+'/test.txt';
-  fs.appendFile(fileName, 'Hello World!222\n', function (err) {
-    if (err) return console.log(err);
-    console.log('Hello World > helloworld.txt');
-  });
+  // var fileName = __dirname+'/test.txt';
+  // fs.appendFile(fileName, 'Hello World!222\n', function (err) {
+  //   if (err) return console.log(err);
+  //   console.log('Hello World > helloworld.txt');
+  // });
 
-  var buffer = fs.readFileSync(fileName);
+  // var buffer = fs.readFileSync(fileName);
 
-  var fileContent = buffer.toString();
+  // var fileContent = buffer.toString();
 
 
-  res.send(fileContent);
+  res.send("fileContent");
 });
 
 // starting the server
