@@ -32,13 +32,18 @@ app.use(morgan('combined'));
 
 // defining an endpoint to return all ads
 app.get('/', (req, res) => {
-
-  fs.appendFile('/Users/Liviu/Career/Projects/LanguageLearning-Api/LanguageLearning-api/test.txt', 'Hello World!222\n', function (err) {
+  var fileName = __dirname+'/test.txt';
+  fs.appendFile(fileName, 'Hello World!222\n', function (err) {
     if (err) return console.log(err);
     console.log('Hello World > helloworld.txt');
   });
 
-  res.send(ads);
+  var buffer = fs.readFileSync(fileName);
+
+  var fileContent = buffer.toString();
+
+
+  res.send(fileContent);
 });
 
 // starting the server
