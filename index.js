@@ -52,3 +52,9 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
   console.log('listening on port '+ PORT);
 });
+
+
+// git add .
+// git commit -m "updated to nodemon"
+// git push heroku main
+// heroku ps:scale web=1
