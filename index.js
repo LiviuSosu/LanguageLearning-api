@@ -48,6 +48,10 @@ app.get('/', (req, res) => {
   res.send(fileContent);
 });
 
+app.post('/',  (req, res) => {
+  
+  res.send({ message: 'New ad inserted.' });
+});
 // starting the server
 app.listen(PORT, () => {
   console.log('listening on port '+ PORT);
