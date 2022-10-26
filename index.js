@@ -6,6 +6,8 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 
+const {getAds} = require('./src/database/mongo');
+
 
 const path = require( "path" );
 const fs = require( 'fs' );
