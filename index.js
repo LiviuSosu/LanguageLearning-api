@@ -53,10 +53,10 @@ app.get('/', async (req, res) => {
   res.send(await getAds());
 });
 
-app.post('/',  async (req, res) => {
+app.post('/',  (req, res) => {
   
   // res.send({ message: 'New ad inserted.' });
-  res.send(await getAds());
+  res.send(process.env['JwtSecretKey']);
 });
 // starting the server
 app.listen(PORT, () => {
