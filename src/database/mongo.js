@@ -1,5 +1,9 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://<username>:<password>@cluster0.re2kq.mongodb.net/?retryWrites=true&w=majority";
+
+const mongoDbUserName = process.env.MongoDbUserName;
+const mongoDbPassword = process.env.MongoDbPassword;
+
+const uri = "mongodb+srv://"+mongoDbUserName+":"+mongoDbPassword+"@cluster0.re2kq.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 
@@ -14,6 +18,7 @@ async function  getAds() {
 
   const collection = await client.db("sample_mflix").collection("comments").find({}).toArray();
   console.log(collection);
+  return collection;
   }
 
 module.exports = {
