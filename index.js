@@ -65,6 +65,6 @@ app.listen(PORT, () => {
 
 
 // git add .
-// git commit -m "updated to nodemon"
+// git commit -m "added the procfile"
 // git push heroku main
 // heroku ps:scale web=1
