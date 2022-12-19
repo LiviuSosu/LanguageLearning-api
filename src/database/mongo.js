@@ -10,12 +10,12 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 
 async function  getAds() {
   client.connect(err => {
-    const collection = client.db("sample_mflix").collection("comments");
+    const collection = client.db("language_learning").collection("categories");
     // perform actions on the collection object
     //client.close();
   });
 
-  const collection = await client.db("sample_mflix").collection("comments").find({}).toArray();
+  const collection = await client.db("language_learning").collection("categories").find({}).toArray();
   console.log(collection);
   return collection;
   }
