@@ -1,4 +1,5 @@
 //https://auth0.com/blog/node-js-and-express-tutorial-building-and-securing-restful-apis/
+//https://www.mongodb.com/docs/drivers/node/current/
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -6,21 +7,14 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 
-const {getAds} = require('./src/database/mongo');
-
+const {getCategories, addCategory, deleteCategory} = require('./src/database/mongo');
 
 const path = require( "path" );
 const fs = require( 'fs' );
 
 const PORT = process.env.PORT || 5000
 
-// defining the Express app
 const app = express();
-
-// defining an array to work as the database (temporary solution)
-const ads = [
-  {title: 'Hello, world (again3)!'}
-];
 
 // adding Helmet to enhance your API's security
 app.use(helmet());
@@ -50,21 +44,18 @@ app.get('/', async (req, res) => {
 
 
   // res.send(fileContent);
-  res.send(await getAds());
+  res.send(await getCategories());
 });
 
-app.post('/',  (req, res) => {
-  
-  // res.send({ message: 'New ad inserted.' });
-  res.send(process.env['JwtSecretKey']);
+app.post('/addCategory',  async(req, res) => {
+  res.send(await addCategory(req.body));
 });
+
+app.delete('/deleteCategory', async(req,res)=>{
+  res.send(await deleteCategory(req.body));
+});
+
 // starting the server
 app.listen(PORT, () => {
   console.log('listening on port '+ PORT);
 });
-
-
-// git add .
-// git commit -m "added the procfile"
-// git push heroku main
-// heroku ps:scale web=1
