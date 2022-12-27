@@ -46,14 +46,33 @@ async function addCategory(category) {
 }
 
 async function deleteCategory(id){
-  console.log(id)
   await startDatabase();
 
   await categoriesCollection.deleteOne({_id: new ObjectId(id._id)});
 }
 
+async function addWord(categoryId,request){
+await startDatabase();
+
+const options = { upsert: true };
+const filter = { _id: new ObjectId(categoryId) };
+const updateDoc = {
+  $set: {
+    words: {
+      word: request.word,
+      imageUrl: request.imageUrl
+    }
+  },
+};
+
+const result = await categoriesCollection.updateOne(filter, updateDoc, options);
+
+return result;
+}
+
 module.exports = {
   getCategories,
   addCategory,
-  deleteCategory
+  deleteCategory,
+  addWord
 };
