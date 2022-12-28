@@ -39,6 +39,7 @@ async function addCategory(category) {
 
   var obj = {
     categoryName: category.categoryName,
+    words: []
   };
   const { insertedId } = await categoriesCollection.insertOne(obj);
 
@@ -54,6 +55,9 @@ async function deleteCategory(id){
 async function addWord(categoryId,request){
 await startDatabase();
 
+var x = await categoriesCollection.find({_id: new ObjectId(categoryId)}).toArray();
+var y = x[0].words;
+
 const options = { upsert: true };
 const filter = { _id: new ObjectId(categoryId) };
 const updateDoc = {
@@ -65,7 +69,7 @@ const updateDoc = {
   },
 };
 
-const result = await categoriesCollection.updateOne(filter, updateDoc, options);
+const result = "";//await categoriesCollection.updateOne(filter, updateDoc, options);
 
 return result;
 }
